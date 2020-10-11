@@ -10,7 +10,7 @@
 {
     //IsPost test wheter the page is 1st time or a post back from the browser
     //the value of the flag will be false on the 1st time on followup post backs the flag will be true
-    
+
     //extract any need info (data) from the form
     //extracting data from a control uses Request.Form["controlname"]
     //C# coding so its case sensitive and spelling is important
@@ -20,6 +20,20 @@
     //extract data
     var name = Request.Form["csCodingName"];
     var email = Request.Form["Email"];
+    //note the name PressMe has been given to BOTH buttons
+    //The data return from the control will be the data assigned to the value parameter
+    // thus, theButton will have a value of either name or email, NOT both
+    var theButton = Request.Form["PressMe"];
+
+    //start your testing for your criterial path
+    if (theButton.Equals("name"))
+    {
+        enteredData = name;
+    }
+    else
+    {
+        enteredData = email;
+    }
 }
 else
 {
@@ -33,6 +47,10 @@ else
             <tr>
                 <td>Enter your name:</td>
                 <td><input type="text" id="javascriptname" name="csCodingName" /></td>
+            </tr>
+            <tr>
+                <td>Enter your Email:</td>
+                <td><input type="text" id="Email" name="Email" /></td>
             </tr>
             <tr>
                 <td colspan="2">
